@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#home'
   
+  resources :users
+  
   #routes for login, logout
   match '/signup',   to: 'users#new',    via: 'get'
   match '/login',   to: 'sessions#new',    via: 'get'
