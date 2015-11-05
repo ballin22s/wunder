@@ -14,9 +14,9 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password:
-  socket: /tmp/mysql.sock
-
+  password: gaga09
+  host: localhost
+  
 development:
   <<: *default
   database: wunder_development
@@ -47,8 +47,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: wunder_production
-  username: wunder
-  password: <%= ENV['WUNDER_DATABASE_PASSWORD'] %>
+#production:
+  #<<: *default
+  #database: wunder_production
+  #username: wunder
+  #password: <%= ENV['WUNDER_DATABASE_PASSWORD'] %>
