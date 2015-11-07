@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
   
   resources :users
+  resources :account_activations, only: [:edit]
   
   #routes for login, logout
   match '/signup',  to: 'users#new',    via: 'get'
