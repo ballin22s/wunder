@@ -1,31 +1,13 @@
 Rails.application.routes.draw do
-  get 'order_items/create'
 
-  get 'order_items/update'
-
-  get 'order_items/destroy'
-
-  get 'carts/show'
-
-  resources :products
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
-
-  get 'sessions/new'
-
-  get 'static_pages/home'
-
-  get 'static_pages/help'
-
-  get 'static_pages/about'
-
-  root to: 'static_pages#home'
+  root to: 'products#index'
   
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :movies
+  resources :products
+  resource :cart, only: [:show]
+  resources :order_items
   
   #routes for login, logout
   match '/signup',  to: 'users#new',    via: 'get'
@@ -33,7 +15,11 @@ Rails.application.routes.draw do
   match '/login',   to: 'sessions#new',    via: 'get'
   match '/logout',  to: 'sessions#destroy', via: :delete
   
+  get 'password_resets/new'
+  get 'password_resets/edit'
+  
   #routes for static pages
+  get 'static_pages/home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
 
