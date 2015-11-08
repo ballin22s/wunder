@@ -26,5 +26,6 @@ end
   Product.create!(title:  title,
               price: price,
               release_year: release_year,
-              description: description)
+              description: description,
+              active: true)
 end

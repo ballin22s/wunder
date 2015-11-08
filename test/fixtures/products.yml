@@ -5,9 +5,11 @@ one:
   release_year: 1
   price: 1.5
   description: MyText
+  active: true
 
 two:
   title: MyString
   release_year: 1
   price: 1.5
   description: MyText
+  active: true
