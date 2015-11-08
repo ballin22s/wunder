@@ -17,3 +17,14 @@ User.create!(name:  "Example User",
               activated: true,
               activated_at: Time.zone.now.to_datetime)
 end
+
+99.times do |n|
+  title  = Faker::Commerce.product_name
+  price = Faker::Commerce.price
+  release_year = 2015
+  description = Faker::Company::catch_phrase
+  Product.create!(title:  title,
+              price: price,
+              release_year: release_year,
+              description: description)
+end
