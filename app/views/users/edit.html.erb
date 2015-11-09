@@ -1,8 +1,18 @@
-<% provide(:title, 'Edit user') %>
+<% provide(:title, 'Edit Profile') %>
 <% provide(:button_text, 'Save changes') %>
-<h1>Update your profile</h1>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-3">
+    <div class="sidebar-nav">  
+      <h4>Account</h4>
+      <ul class="nav nav-tabs nav-stacked">  
+        <li><%= link_to "Profile", edit_user_path(@user) %></li>
+        <li><%= link_to " Address", address_user_path(@user) %></li>
+        <li><%= link_to " Payment", payment_user_path(@user) %></li>   
+      </ul> 
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h4>Update Profile</h4>
     <%= render 'form' %>
   </div>
 </div>

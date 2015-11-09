@@ -2,12 +2,17 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
   
-  resources :users
+  resources :users do
+    member do
+      get :address, :payment
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :products
   resource :cart, only: [:show]
   resources :order_items
+  resources :charges
   
   #routes for login, logout
   match '/signup',  to: 'users#new',    via: 'get'

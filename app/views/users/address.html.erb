@@ -1,0 +1,41 @@
+<% provide(:title, 'Edit Address') %>
+<% provide(:button_text, 'Save changes') %>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="sidebar-nav">  
+      <h4>Account</h4>
+      <ul class="nav nav-tabs nav-stacked">  
+        <li><%= link_to "Profile", edit_user_path(@user) %></li>
+        <li><%= link_to "Address", address_user_path(@user) %></li>
+        <li><%= link_to "Payment", payment_user_path(@user) %></li>   
+      </ul> 
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h4>Update Address</h4>
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: @user %>
+
+      <%= f.label :address1 %>
+      <%= f.text_field :address1, class: 'form-control' %>
+
+      <%= f.label :address2 %>
+      <%= f.text_field :address2, class: 'form-control' %>
+
+      <%= f.label :city %>
+      <%= f.text_field :city, class: 'form-control' %>
+
+      <%= f.label :state %>
+      <%= f.text_field :state, class: 'form-control' %>
+
+      <%= f.label :zip_code %>
+      <%= f.text_field :zip_code, class: 'form-control' %>
+
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: 'form-control' %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

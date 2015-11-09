@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
       #end
     #end
     
-    def current_order
-      if !current_user.order.nil?
-        Order.find_by_user_id(current_user.id)
+    def current_order      
+      if !current_user.order.nil?        
+        Order.find_by_user_id(current_user.id)        
       else
         Order.new
       end
