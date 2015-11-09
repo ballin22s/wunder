@@ -6,8 +6,12 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
-    @order_item = current_order.order_items.new
+    if logged_in?
+      @products = Product.all
+      @order_item = current_order.order_items.new
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1
