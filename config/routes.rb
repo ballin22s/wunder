@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :products
   resource :cart, only: [:show]
+  resources :cart_items
+  resources :orders
   resources :order_items
   resources :charges
   

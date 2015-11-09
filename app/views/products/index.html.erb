@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-9">
 		  <% @products.each do |product| %>
-        <%= render "product_row", product: product, order_item: @order_item %>
+        <%= render "product_row", product: product, cart_item: @cart_item %>
       <% end %>
     </div>
   </div>

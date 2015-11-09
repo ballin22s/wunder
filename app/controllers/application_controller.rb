@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   
-  helper_method :current_order
+  helper_method :current_cart
 
     #def current_order
       #session.clear
@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
       #end
     #end
     
-    def current_order      
-      if !current_user.order.nil?        
-        Order.find_by_user_id(current_user.id)        
+    def current_cart  
+      if !current_user.cart.nil?        
+        Cart.find_by_user_id(current_user.id)        
       else
-        Order.new
+        Cart.new
       end
     end
     

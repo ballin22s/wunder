@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108210556) do
+ActiveRecord::Schema.define(version: 20151109201407) do
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "product_id",  limit: 4
+    t.integer  "cart_id",     limit: 4
+    t.decimal  "unit_price",            precision: 12, scale: 3
+    t.integer  "quantity",    limit: 4
+    t.decimal  "total_price",           precision: 12, scale: 3
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+  add_index "cart_items", ["product_id"], name: "index_cart_items_on_product_id", using: :btree
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.decimal  "subtotal",             precision: 12, scale: 3
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "product_id",  limit: 4

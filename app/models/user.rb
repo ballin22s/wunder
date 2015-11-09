@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_one :order
+  has_one :cart
+  has_many :orders
   
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

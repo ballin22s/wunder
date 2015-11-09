@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   def index
     if logged_in?
       @products = Product.all
-      @order_item = current_order.order_items.new
+      @cart_item = current_cart.cart_items.new
     else
       @products = Product.all
     end
