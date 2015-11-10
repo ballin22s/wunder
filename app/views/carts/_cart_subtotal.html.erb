@@ -1,9 +1,9 @@
 <% if @cart_items.size == 0 %>
   
 <% else %>
-  <div class="well">
+  <div>
     <h4><%= "#{current_cart.cart_items.size} Items in Cart" %><h4>
     <h4><%= "( #{number_to_currency current_cart.subtotal} )" %><h4>
-    <%= link_to "Proceed to Checkout", confirm_address_cart_path, class: "btn btn-warning" %>
+    <%= button_to "Proceed to Checkout", confirm_address_cart_path, :method => "get", :class => "btn btn-warning" %>                           
   </div>
 <% end %>

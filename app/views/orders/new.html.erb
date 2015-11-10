@@ -1,0 +1,96 @@
+<% provide(:title, "New Order") %> 
+  
+<div class="">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+    
+      <h4>
+        Review Your Order
+      </h4>
+
+      <div class="row">
+        <div class="col-md-4 well">
+          <b>
+            Order Summary
+          </b>
+          <div>
+            <h4> Items: <%= current_cart.cart_items.size %> </h4>
+          </div>
+          <div>
+            <h4 style="color: red;">Order Total: <%= current_cart.subtotal %></h4>
+          </div>
+        </div>
+      
+        <div class="col-md-8">
+      
+          <%= form_for @order do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+                        
+            <%= f.hidden_field :order_status_id %>
+            <%= f.hidden_field :user_id %>
+            <%= f.hidden_field :stripe_card_token %>
+                      
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                        <a href="#" data-toggle="tooltip" title="" data-placement="right" data-original-title="We ask for your payment information so you can enjoy ClickOnComics Unleashed uninterrupted.">
+                          Credit Card
+                          <div class="col-md-2 pull-right"><%= (image_tag("visa.png", :width => 30, :height => 20)) %></div>
+                          <div class="col-md-2 pull-right"><%= (image_tag("mastercard.png", :width => 30, :height => 20)) %></div>
+                          <div class="col-md-2 pull-right"><%= (image_tag("discover.png", :width => 30, :height => 20)) %></div>
+                          <div class="col-md-2 pull-right"><%= (image_tag("american_express.png", :width => 30, :height => 20)) %></div>
+                        </a>
+                      </h4>
+                    </div>
+                    
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        <div id="billing_fields">
+
+                            <div class="field form-group">
+                               <%= label_tag :name, "Name on Credit Card: " %>
+                               <%= text_field_tag :name, nil, name: nil, class: "input form-control" %>
+                            </div>
+                            <div class="field form-group">
+                              <%= label_tag :card_number, "Credit Card Number: (No Spaces)" %>  
+                              <a href="#" data-toggle="tooltip" title="" data-placement="right" data-original-title="ClickOnComics protects your information with industry-leading security and fraud protection systems."> <span class= "glyphicon glyphicon-lock"></span> You are protected.</a>                          
+                              <%= text_field_tag :card_number, nil, name: nil, :class => "form-control" %>
+                            </div>
+                            <div class="field form-group">
+                              <%= label_tag :card_code, "Security Code on Card:" %>
+                              <a href="#" data-toggle="tooltip" title="" data-placement="right" data-original-title="MasterCard, Visa and Discover security codes are located on the back of the card and are typically a separate group of 3 digits to the right of the signature strip. American Express security codes are 4 digits located on the front of the card and usually towards the right.">(CVV) What is this?</a>                          
+                              <%= text_field_tag :card_code, nil, name: nil, :class => "form-control" %>
+                            </div>
+                            <div class="field form-group">
+                              <%= label_tag :card_month, "Card Expiration:" %>
+                              <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", :class => "form-control"} %><br>
+                              <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :class => "form-control"} %>
+                            </div>
+
+                          <div id="stripe_error">
+                            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+                          </div>
+                          
+                          <div class="subtitle"> 
+                            By placing your order, you agree to Wunder.com's privacy notice and conditions of use.
+                          </div> <br>
+
+                          <div class="actions">
+                            <%= f.submit "Place your order", class: "btn btn-success" %>
+                          </div>
+                                                    
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+        
+           <% end %>
+         </div>
+       </div>
+
+    </div>  
+  </div>
+</div>

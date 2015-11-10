@@ -72,6 +72,12 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
   
+  def full_address
+    if self.address1 != "" && self.city != "" && self.state != "" && self.zip_code != ""
+      address = "#{self.address1} #{self.city}, #{self.state} #{self.zip_code}"
+    end
+  end
+  
   private
     
     # Converts email to all lower-case.

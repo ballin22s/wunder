@@ -1,0 +1,35 @@
+<% provide(:title, 'Confirm Payment') %>
+<% provide(:button_text, 'Ship to this address') %>
+
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
+    <h3>Payment Option</h3>
+    
+    <% if current_user.customer_stripe_token? %>
+      <p>
+        Is the payment option you'd like to use displayed below? <br>
+        If so, click the corresponding "Continue to Checkout" button.<br>
+        Or you can enter a new <%= link_to "payment option here.", payment_user_path(current_user) %> 
+      </p>
+      <p>
+        <b>Address: </b><br>
+      
+        <%= @user.address1 %>
+        <%= @user.address2 %><br>
+      
+        <%= @user.city %>
+      
+        <%= @user.state %>
+      
+        <%= @user.zip_code %><br>
+      </p> 
+      <p>
+        <b>Phone: </b>
+        <%= @user.phone %>
+      </p>
+      <%= button_to "Continue to Checkout", new_order_path, :method => "get", :class => "btn btn-warning" %>  
+    <% else %>
+      ENTER A PAYMENT OPTION      
+    <% end %>                     
+  </div>
+</div>

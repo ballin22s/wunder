@@ -24,9 +24,13 @@
   <p id="notice"><%= notice %></p>
 
   <h3 class="pull-right">Products For Sale</h3>
-
-  <div>
-      <% @products.each do |product| %>
+  
+  <div class="row">
+    <div class="col-md-3">
+		  <%= render 'static_pages/sidebar' %>
+    </div>
+    <div class="col-md-9">
+		  <% @products.each do |product| %>
         <div class="well">
 
           <div class="row">
@@ -43,6 +47,7 @@
           </div>
         </div>
       <% end %>
+    </div>
   </div>
   
 <% end %>

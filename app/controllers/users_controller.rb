@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Succesfully Updated"
-      redirect_to request.referer
+      redirect_to root_url
     else
       error_messages = @user.errors.messages
       @user = User.find(params[:id])
