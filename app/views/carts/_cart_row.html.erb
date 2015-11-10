@@ -1,28 +1,40 @@
 <div class="well">
 
   <div class="row">
-    <div class="col-xs-8">
-      <h4><%= product.title %></h4>
-    </div>
-    <div class="col-xs-4">
+    
+    <div class="col-xs-12">
+      
+      <div class="col-xs-3">
+        <h4><%= product.title %></h4>
+      </div>
       
       <%= form_for cart_item, remote: true do |f| %>
-        <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency cart_item.unit_price %></span></h4>
-        <div class="row">
-          <div class="col-xs-4">
-            <%= f.number_field :quantity, value: cart_item.quantity.to_i, class: "form-control", min: 1 %>
+        
+          <h4 class="col-xs-3">
+            Price <br><span style="color: green"><%= number_to_currency cart_item.unit_price %></span>
+          </h4>
+          
+          <div class="col-xs-3">
+            QTY: <%= f.number_field :quantity, value: cart_item.quantity.to_i, class: "form-control", min: 1 %>
             <%= f.hidden_field :product_id, value: product.id %>
           </div>
-          <div class="col-xs-8 text-right">
-            <div class="btn-group">
-              <%= f.submit "Update Quantity", class: "btn btn-primary" %>
-              <%= link_to "Delete", cart_item, { data: { confirm: "Are you sure you wish to delete the product '#{cart_item.product.title}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
-            </div>
+          
+          <div class="col-xs-3">
+            <br>
+            <%= f.submit "Update Quantity", class: "btn btn-primary" %>                         
           </div>
+          
+      </div> 
+
+      <div class="col-xs-12">  
+        <div class="col-xs-3">
+          <%= link_to "Delete", cart_item, { data: { confirm: "Are you sure you wish to delete the product '#{cart_item.product.title}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
         </div>
+          
         <h4 class="text-right">Total Price: <span style="color: green"><%= number_to_currency cart_item.total_price %></span></h4>
       <% end %>
-    </div>
+     </div> 
+    
     
   </div>
 </div>

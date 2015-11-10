@@ -1,3 +1,26 @@
-<div class="shopping-cart">
-  <%= render "shopping_cart" %>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-12">
+  
+    <div class ="statictitle">
+      <h3>Shopping Cart</h3>
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-md-9">
+        <div class="shopping-cart">
+          <%= render "shopping_cart" %>
+        </div>
+      </div>
+      
+      <div class="col-md-3">
+        <div class="cart-subtotal">
+          <%= render "cart_subtotal" %>
+        </div>
+      </div>
+
+    </div>  
+  </div>
+</div>
 </div>

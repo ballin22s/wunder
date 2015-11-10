@@ -2,7 +2,7 @@
 
   <p id="notice"><%= notice %></p>
 
-  <h1>Products For Sale</h1>
+  <h3 class="pull-right">Products For Sale</h3>
   <div class="row">
     <% if current_user.admin? %>
       <%= link_to 'Add New Product', new_product_path %>
@@ -23,7 +23,7 @@
 <% else %>
   <p id="notice"><%= notice %></p>
 
-  <h1>Products For Sale</h1>
+  <h3 class="pull-right">Products For Sale</h3>
 
   <div>
       <% @products.each do |product| %>

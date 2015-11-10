@@ -10,11 +10,14 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :products
-  resource :cart, only: [:show]
+  resource :cart do
+    member do
+      get :confirm_address
+    end
+  end
   resources :cart_items
   resources :orders
   resources :order_items
-  resources :charges
   
   #routes for login, logout
   match '/signup',  to: 'users#new',    via: 'get'
