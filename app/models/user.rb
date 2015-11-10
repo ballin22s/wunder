@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_one :cart
-  has_many :orders
+  has_one :cart, dependent: :destroy
+  has_many :orders, dependent: :destroy
   
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
   
+  # Check if user is missing address fields
   def full_address
     if self.address1 != "" && self.city != "" && self.state != "" && self.zip_code != ""
       address = "#{self.address1} #{self.city}, #{self.state} #{self.zip_code}"

@@ -2,9 +2,9 @@ class CartItem < ActiveRecord::Base
     belongs_to :product
     belongs_to :cart
 
+    validates :product_id, presence: true
+    validates :cart_id, presence: true
     validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
-    validate :product_present
-    validate :cart_present
 
     before_save :finalize
 
@@ -25,17 +25,6 @@ class CartItem < ActiveRecord::Base
     end
 
   private
-    def product_present
-      if product.nil?
-        errors.add(:product, "is not valid or is not active.")
-      end
-    end
-
-    def cart_present
-      if cart.nil?
-        errors.add(:cart, "is not a valid cart.")
-      end
-    end
 
     def finalize
       self[:unit_price] = unit_price

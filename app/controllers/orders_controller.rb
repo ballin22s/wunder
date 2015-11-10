@@ -1,15 +1,11 @@
 class OrdersController < ApplicationController
-  before_filter :signed_in_user, only: [:new, :create]
+  before_filter :signed_in_user, only: [:index, :new, :create]
   
   def index
     @user = User.find(params[:user_id])
     @orders = @user.orders.order(:created_at)
   end
-  
-  def show
-    
-  end
-  
+
   def new
     @order = Order.new
     @order.user_id = current_user.id
@@ -48,7 +44,7 @@ class OrdersController < ApplicationController
     def signed_in_user
       unless logged_in?
         store_location
-        redirect_to (root_path), notice: "Please sign in."
+        redirect_to (login_url), notice: "Please sign in."
       end
     end
   

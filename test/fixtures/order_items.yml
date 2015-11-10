@@ -4,8 +4,26 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+order_item_one:
+  unit_price: 20
+  quantity: 1
+  total_price: 20
+  created_at: <%= Time.zone.now.to_datetime %>
+
+order_item_two:
+  unit_price: 50
+  quantity: 2  
+  total_price: 100
+  created_at: <%= Time.zone.now.to_datetime %>
+
+order_item_three:
+  unit_price: 100
+  quantity: 3
+  total_price: 300
+  created_at: <%= Time.zone.now.to_datetime %>
+
+order_item_four:
+  unit_price: 200
+  quantity: 4
+  total_price: 800
+  created_at: <%= Time.zone.now.to_datetime %>

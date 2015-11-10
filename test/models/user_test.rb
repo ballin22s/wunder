@@ -3,6 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
+    @order = orders(:order_one)
     @user = User.new(name: "Example User", email: "user@example.com",
                      password: "foobar", password_confirmation: "foobar")
   end
@@ -76,4 +77,13 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
   end
+  
+  test "associated orders should be destroyed" do
+    @user.save
+    @user.orders.create!(:order_status_id => @order.id, :subtotal => 100)
+    assert_difference 'Order.count', -1 do
+      @user.destroy
+    end
+  end
+  
 end

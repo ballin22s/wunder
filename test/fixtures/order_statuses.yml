@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: In Progress
 
 two:
-  name: MyString
+  name: Placed
+  
+three:
+  name: Shipped
+
+four:
+  name: Cancelled

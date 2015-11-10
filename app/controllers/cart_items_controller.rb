@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+  before_filter :signed_in_user, only: [:create, :update, :destroy]
   
   def create
     @cart = current_cart
@@ -32,6 +33,13 @@ class CartItemsController < ApplicationController
   
     def cart_item_params
       params.require(:cart_item).permit(:quantity, :product_id)
+    end
+    
+    def signed_in_user
+      unless logged_in?
+        store_location
+        redirect_to (login_path), notice: "Please sign in."
+      end
     end
   
 end

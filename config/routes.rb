@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root to: 'products#index'
   
   resources :users do
-    resources :orders, only: [:index, :show]  do 
-      resources :order_items
-    end
+    resources :orders, only: [:index, :show]
     member do
       get :address, :payment
+      patch :update_address
+      put :update_address
     end
   end
   resources :account_activations, only: [:edit]
@@ -18,10 +18,9 @@ Rails.application.routes.draw do
       get :confirm_address, :confirm_payment
     end
   end
+  resources :order_items
   resources :cart_items
-  resources :orders do 
-    resources :order_items
-  end
+  resources :orders
   
   #routes for login, logout
   match '/signup',  to: 'users#new',    via: 'get'

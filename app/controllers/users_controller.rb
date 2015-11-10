@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :address, :payment]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :address, :payment, :update_address]
+  before_action :correct_user,   only: [:edit, :update, :address, :update_address]
   before_action :admin_user,     only: :destroy
     
   def index
@@ -45,17 +45,20 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Succesfully Updated"
-      redirect_to root_url
+      flash[:success] = "Profile updated"
+      redirect_to edit_user_path(@user)
     else
-      error_messages = @user.errors.messages
-      @user = User.find(params[:id])
-      @user.errors.messages.merge!(error_messages)
-      if URI(request.referer).path == edit_user_path 
-        render 'edit'
-      else
-        render 'address'
-      end
+      render 'edit'
+    end
+  end
+  
+  def update_address
+    @user = User.find(params[:id])
+    if @user.update_attributes(address_params)
+      flash[:success] = "Address updated"
+      redirect_to address_user_path(@user)
+    else
+      render 'address'
     end
   end
   
@@ -68,9 +71,11 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :phone, :address1, :address2, :city, :state, 
-                                   :zip_code, :customer_stripe_token, :card_stripe_token, 
-                                   :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+    
+    def address_params
+      params.require(:user).permit(:phone, :address1, :address2, :city, :state, :zip_code)
     end
     
     # Before filters

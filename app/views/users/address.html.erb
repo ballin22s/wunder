@@ -14,7 +14,7 @@
   </div>
   <div class="col-md-9">
     <h4>Update Address</h4>
-    <%= form_for(@user) do |f| %>
+    <%= form_for @user, :url => update_address_user_path do |f| %>
       <%= render 'shared/error_messages', object: @user %>
 
       <%= f.label :address1 %>
