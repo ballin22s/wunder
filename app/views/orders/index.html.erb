@@ -1,14 +1,17 @@
 <% provide(:title, "Orders") %> 
 
 <div class="row">
+  
   <div class="col-md-offset-3 col-md-6">
+  
+    <h3>Your Orders</h3>
+  
 	  <% @orders.each do |order| %>
-        <div class="row">
+        <div class="row well">
           <div class="col-xs-12">
             <h4>Order #<%= order.id %>: <%= order.order_status.name %></small></h4>
           </div>
           <div class="col-xs-12">
-                            
               <% order.order_items.each do |item| %>
                 <div>
                   <%= item.product.title %> (<%= item.unit_price %>)
@@ -18,7 +21,6 @@
                   Total Price: <%= item.total_price %>
                 </div><br>
           	  <% end %>
-
           </div>
         </div>
     <% end %>

@@ -8,9 +8,11 @@
   </div>
 <% end %>
 <% if @cart_items.size == 0 %>
-  <p class="text-center">
-    There are no items in your shopping cart.  Please <%= link_to "go back", root_path %> and add some items to your cart.
-  </p>
+  <div class="row well">
+    <p class="text-center">
+      There are no items in your shopping cart.  Please <%= link_to "go back", root_path %> and add some items to your cart.
+    </p>
+  </div>
 <% else %>
   <% @cart_items.each do |cart_item| %>
     <%= render 'carts/cart_row', product: cart_item.product, cart_item: cart_item, show_total: true %>

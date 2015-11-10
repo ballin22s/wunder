@@ -4,6 +4,8 @@
 /* mixins, variables, etc. */
 
 $light-gray: #777;
+$white: #FFFFFF;
+$black: #000000;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -74,15 +76,14 @@ p {
 
 #logo {
   float: left;
-  margin-right: 10px;
+  margin-right: 0px;
   font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
+  color: white;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 1px;
   &:hover {
-    color: #fff;
+    color: white;
     text-decoration: none;
   }
 }
@@ -174,7 +175,8 @@ footer {
   a {
     color: #555;
     &:hover {
-      color: #fff;
+      color: #000000;
+      background-color: #fff;
     }
   }
   small {
