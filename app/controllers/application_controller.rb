@@ -4,16 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   
+  #Fine or Create Current User Cart
   helper_method :current_cart
-
-    #def current_order
-      #session.clear
-      #if !session[:order_id].nil?
-        #Order.find(session[:order_id])
-      #else
-       # Order.new
-      #end
-    #end
     
     def current_cart  
       if !current_user.cart.nil?        

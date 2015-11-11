@@ -1,6 +1,7 @@
 class CartItemsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :update, :destroy]
   
+  #CREATE new cart items
   def create
     @cart = current_cart
     @cart.user = current_user
@@ -9,6 +10,7 @@ class CartItemsController < ApplicationController
     session[:order_id] = @cart.id
   end
 
+  #UPDATE cart items
   def update
     @cart = current_cart
     @cart_item = @cart.cart_items.find(params[:id])
@@ -19,6 +21,7 @@ class CartItemsController < ApplicationController
     end 
   end
 
+  #DESTROY cart items
   def destroy
     @cart = current_cart
     @cart_item = @cart.cart_items.find(params[:id])
@@ -31,10 +34,14 @@ class CartItemsController < ApplicationController
 
   private
   
+    #cart parameters.
     def cart_item_params
       params.require(:cart_item).permit(:quantity, :product_id)
     end
     
+    # Before filters
+    
+    #confirm logged in
     def signed_in_user
       unless logged_in?
         store_location

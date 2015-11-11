@@ -39,4 +39,5 @@ Database initialization
 
 How to run the test suite
 
+    To run Minitest
   	bundle exec rake test

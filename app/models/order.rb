@@ -1,22 +1,27 @@
 class Order < ActiveRecord::Base
+  
+  #Relationships
   belongs_to :user
   belongs_to :order_status
-  
   has_many :order_items
   
   attr_accessor :stripe_card_token
   
+  #Callbacks
   before_create :set_order_status
   
+  #Validations
   validates :user_id, presence: true
   validates :order_status_id, presence: true
   
+  #Save With Payment If Valid
   def save_with_payment(total)
     if valid?
       save_with_stripe_payment(total)
     end
   end
   
+  #Create/Save Stripe Payment
   def save_with_stripe_payment(amount)
     @amount = (amount*100).round
     
@@ -43,6 +48,7 @@ class Order < ActiveRecord::Base
   
   private
 
+    #Set Order Status
     def set_order_status
       self.order_status_id = 1
     end

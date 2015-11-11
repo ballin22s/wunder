@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+  #project root
   root to: 'products#index'
   
+  #routes for user, user orders, and address update
   resources :users do
     resources :orders, only: [:index, :show]
     member do
@@ -10,16 +12,30 @@ Rails.application.routes.draw do
       put :update_address
     end
   end
+  
+  #routes for account activiation
   resources :account_activations, only: [:edit]
+  
+  #routes for password reset
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  
+  #routes for products
   resources :products
+  
+  #route for cart & confirm address
   resource :cart do
     member do
       get :confirm_address, :confirm_payment
     end
   end
+  
+  #routes for order items
   resources :order_items
+  
+  #routes for cart items
   resources :cart_items
+  
+  #routes for orders
   resources :orders
   
   #routes for login, logout
@@ -28,6 +44,7 @@ Rails.application.routes.draw do
   match '/login',   to: 'sessions#new',    via: 'get'
   match '/logout',  to: 'sessions#destroy', via: :delete
   
+  #routes for password reset
   get 'password_resets/new'
   get 'password_resets/edit'
   
