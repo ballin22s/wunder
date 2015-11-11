@@ -7,15 +7,16 @@ This is a small shopping cart application using Ruby On Rails.
 
 Things you may want to cover:
 
-* Rails version
+Rails version
+
 	rails 4.2.4
 	
-* Ruby version
+Ruby version
+
 	ruby 2.2.2p95 
 
-* Database creation
-
-MySQL	
+Database creation
+	
 	gem mysql2
 	
 	In Terminal Run (Or your command to start mysql environment)
@@ -28,7 +29,7 @@ MySQL
 	change config/database.yml
 	username & password to your username and password. 
 
-* Database initialization
+Database initialization
 
 	In Terminal Run
 	bundle install
@@ -36,7 +37,6 @@ MySQL
 	bundle exec rake db:migrate (run all migrations)
 	bundle exec rake db:seed (seed the database with seeds.rb)
 
-* How to run the test suite
-  	bundle exec rake test
+How to run the test suite
 
-Please feel free to use a different markup language if you do not plan to run rake doc:app.
+  	bundle exec rake test
